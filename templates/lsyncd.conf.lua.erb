@@ -1,0 +1,8 @@
+settings {
+<% @settings.each do |key, val| -%>
+  <%= key %> = "<%= val %>",
+<% end %>
+}
+
+dofile("<%= @config_dir %>/dodir.lua")
+dodir("<%= @config_dir %>/sync.d")

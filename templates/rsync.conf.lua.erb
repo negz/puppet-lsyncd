@@ -1,0 +1,10 @@
+sync {
+  default.rsync,
+  source = "<%= @source %>",
+  target = "<%= @target %>",
+  rsync = {
+    <% @options.each do |key, val| -%>
+      <%= key %> = <%= val %>,
+    <% end %>
+  },
+}

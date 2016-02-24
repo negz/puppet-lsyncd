@@ -1,0 +1,19 @@
+{
+  "name": "negz-lsyncd",
+  "version": "1.0.0",
+  "author": "Nic Cope",
+  "license": "Apache-2.0",
+  "summary": "Yet another lsyncd module",
+  "source": "https://github.com/negz/puppet-lsyncd",
+  "project_page": "https://forge.puppetlabs.com/negz/lsyncd",
+  "issues_url": "https://github.com/negz/puppet-lsyncd/issues",
+  "tags": ["lsyncd", "rsync"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem": "Ubuntu",
+    "operatingsystemrelease": ["14.04"]
+    }
+  ],
+  "dependencies": [],
+  "data_provider": "hiera"
+}
