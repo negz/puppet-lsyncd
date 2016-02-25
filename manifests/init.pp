@@ -1,7 +1,8 @@
 class lsyncd (
-    $config_dir  = $lsyncd::params::config_dir,
-    $config_file = $lsyncd::params::config_file,
-    $settings    = $lsyncd::params::settings,
+    $config_dir       = $lsyncd::params::config_dir,
+    $config_file      = $lsyncd::params::config_file,
+    $settings         = $lsyncd::params::settings,
+    $max_user_watches = $lsyncd::params::max_user_watches,
 ) inherits lsyncd::params {
 
   file { [$config_dir, "${config_dir}/sync.d"]:
@@ -34,6 +35,13 @@ class lsyncd (
     enable    => true,
     hasstatus => true,
     require   => Package['lsyncd'],
+  }
+
+  if $max_user_watches {
+    sysctl::value { 'fs.inotify.max_user_watches':
+      value   => $max_user_watches,
+      notify  => Service['lsyncd']
+    }
   }
 
   create_resources(lsyncd::rsync, hiera_hash('lsyncd::rsync', {}))
