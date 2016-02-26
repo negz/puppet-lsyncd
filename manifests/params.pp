@@ -6,4 +6,5 @@ class lsyncd::params {
     'statusFile' => '/var/log/lsyncd.status',
     'insist'     => true,
   }
+  $max_user_watches = undef
 }
