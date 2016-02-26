@@ -3,6 +3,7 @@ class lsyncd (
     $config_file      = $lsyncd::params::config_file,
     $settings         = $lsyncd::params::settings,
     $max_user_watches = $lsyncd::params::max_user_watches,
+    $rsync            = {},
 ) inherits lsyncd::params {
 
   file { [$config_dir, "${config_dir}/sync.d"]:
@@ -44,5 +45,5 @@ class lsyncd (
     }
   }
 
-  create_resources(lsyncd::rsync, hiera_hash('lsyncd::rsync', {}))
+  create_resources(lsyncd::rsync, $rsync)
 }
