@@ -7,7 +7,10 @@ class lsyncd (
 ) inherits lsyncd::params {
 
   file { [$config_dir, "${config_dir}/sync.d"]:
-    ensure => 'directory',
+    ensure  => 'directory',
+    recurse => true,
+    purge   => true,
+    notify  => Service['lsyncd'],
   }
 
   file { "${config_dir}/dodir.lua":
