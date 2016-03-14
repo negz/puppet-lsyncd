@@ -7,4 +7,6 @@ class lsyncd::params {
     'insist'     => true,
   }
   $max_user_watches = undef
+  $logrotate = false
+  $logrotate_retain_days = 7
 }

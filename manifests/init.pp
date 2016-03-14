@@ -1,9 +1,11 @@
 class lsyncd (
-    $config_dir       = $lsyncd::params::config_dir,
-    $config_file      = $lsyncd::params::config_file,
-    $settings         = $lsyncd::params::settings,
-    $max_user_watches = $lsyncd::params::max_user_watches,
-    $rsync            = {},
+    $config_dir            = $lsyncd::params::config_dir,
+    $config_file           = $lsyncd::params::config_file,
+    $settings              = $lsyncd::params::settings,
+    $max_user_watches      = $lsyncd::params::max_user_watches,
+    $logrotate             = $lsyncd::params::logrotate,
+    $logrotate_retain_days = $lsyncd::params::logrotate_retain_days,
+    $rsync                 = {},
 ) inherits lsyncd::params {
 
   file { [$config_dir, "${config_dir}/sync.d"]:
@@ -42,6 +44,16 @@ class lsyncd (
     sysctl::value { 'fs.inotify.max_user_watches':
       value   => $max_user_watches,
       notify  => Service['lsyncd']
+    }
+  }
+
+  if $logrotate and $settings['logfile'] {
+    logrotate::rule { 'lsyncd':
+      path         => $settings['logfile'],
+      rotate       => $logrotate_retain_days,
+      rotate_every => 'day',
+      missingok    => true,
+      compress     => true,
     }
   }
 
