@@ -1,4 +1,4 @@
-define lsyncd::rsync (
+define lsyncd::sync::rsync (
   $source   = undef,
   $target   = undef,
   $ensure   = present,
