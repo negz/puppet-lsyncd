@@ -3,7 +3,10 @@ class lsyncd (
     $config_file      = $lsyncd::params::config_file,
     $settings         = $lsyncd::params::settings,
     $max_user_watches = $lsyncd::params::max_user_watches,
+    $package_name     = $lsyncd::params::package_name,
+    $service_name     = $lsyncd::params::service_name,
     $rsync            = {},
+    $rsyncssh         = {},
 ) inherits lsyncd::params {
 
   file { [$config_dir, "${config_dir}/sync.d"]:
@@ -21,7 +24,7 @@ class lsyncd (
     notify  => Service['lsyncd'],
   }
 
-  file { "${config_dir}/${config_file}":
+  file { $config_file:
     ensure  => present,
     content => template("${module_name}/lsyncd.conf.lua.erb"),
     mode    => '0644',
@@ -29,12 +32,12 @@ class lsyncd (
     notify  => Service['lsyncd'],
   }
 
-  package { 'lsyncd':
+  package { $package_name:
     ensure  => 'latest',
-    require => File["${config_dir}/${config_file}"],
+    require => File["${config_file}"],
   }
 
-  service { 'lsyncd':
+  service { $service_name:
     ensure    => 'running',
     enable    => true,
     hasstatus => true,
@@ -47,6 +50,7 @@ class lsyncd (
       notify  => Service['lsyncd']
     }
   }
-
-  create_resources(lsyncd::rsync, $rsync)
+  
+  create_resources(lsyncd::sync::rsync, $rsync)
+  create_resources(lsyncd::sync::rsyncssh, $rsyncssh)
 }

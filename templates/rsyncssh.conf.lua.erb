@@ -1,0 +1,16 @@
+sync {
+  default.rsyncssh,
+  source = "<%= @source %>",
+  targetdir = "<%= @targetdir %>",
+  host = "<%= @host %>",
+  rsync = {
+    <% @rsync_options.each do |key, val| -%>
+      <%= key %> = <%= val %>,
+    <% end %>
+  },
+  ssh = {
+    <% @ssh_options.each do |key, val| -%>
+      <%= key %> = <%= val %>,
+    <% end %>
+  },
+}
