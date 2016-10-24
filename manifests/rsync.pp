@@ -1,4 +1,4 @@
-#For BC
+# For backwards compatibility
 define lsyncd::rsync (
   $source   = undef,
   $target   = undef,

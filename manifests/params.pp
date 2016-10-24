@@ -12,11 +12,11 @@ class lsyncd::params {
       case $::operatingsystem {
         'Ubuntu': {
           $config_file = "${config_dir}/lsyncd.conf.lua"
-				}
-		    default: {
-		      fail("Unsupported platform: ${module_name} currently doesn't support ${::osfamily} or ${::operatingsystem}")
-		    }
-		  }
+        }
+	default: {
+	  fail("Unsupported platform: ${module_name} currently doesn't support ${::osfamily} or ${::operatingsystem}")
+	}
+      }
     }
     default: {
       fail("Unsupported platform: ${module_name} currently doesn't support ${::osfamily} or ${::operatingsystem}")
