@@ -2,6 +2,7 @@ sync {
   default.rsyncssh,
   source = "<%= @source %>",
   targetdir = "<%= @targetdir %>",
+  delete = "<%= @delete %>",
   host = "<%= @host %>",
   rsync = {
     <% @rsync_options.each do |key, val| -%>
