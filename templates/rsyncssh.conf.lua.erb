@@ -2,8 +2,12 @@ sync {
   default.rsyncssh,
   source = "<%= @source %>",
   targetdir = "<%= @targetdir %>",
-  <%- if @delete == false -%>
+  <%- if @delete != true -%>
+    <%- if @delete == false -%>
   delete = <%= @delete %>,
+    <%- else -%>
+  delete = "<%= @delete %>",
+    <%- end -%>
   <%- end -%>
   host = "<%= @host %>",
   rsync = {
