@@ -22,5 +22,16 @@ lsyncd::rsync:
       archive: true
 ```
 
+# Deletions
+
+"[By default](https://axkibe.github.io/lsyncd/manual/config/layer4/#deletions) Lsyncd will delete files on the target that are not present at the source".
+If you need to divert from this behaviour, set one of the other possible flags (false|startup|running).
+
+```yaml
+    source: /tmp/source
+    target: /tmp/target
+    delete: false
+```
+
 # Alternatives
 You might prefer [this lsyncd module](https://github.com/spjmurray/puppet-lsyncd) for Ubuntu, or [this one](https://github.com/thias/puppet-lsyncd) for RHEL.
