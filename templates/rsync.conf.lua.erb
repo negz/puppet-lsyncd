@@ -2,7 +2,9 @@ sync {
   default.rsync,
   source = "<%= @source %>",
   target = "<%= @target %>",
+  <%- if @delete == false -%>
   delete = <%= @delete %>,
+  <%- end -%>
   rsync = {
     <% @options.each do |key, val| -%>
       <%= key %> = <%= val %>,
