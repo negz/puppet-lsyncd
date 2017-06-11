@@ -1,6 +1,6 @@
 {
   "name": "negz-lsyncd",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Nic Cope",
   "license": "Apache-2.0",
   "summary": "Yet another lsyncd module",
