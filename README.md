@@ -25,7 +25,7 @@ lsyncd::rsync:
 # Deletions
 
 "[By default](https://axkibe.github.io/lsyncd/manual/config/layer4/#deletions) Lsyncd will delete files on the target that are not present at the source".
-If you need to divert from this behaviour, set one of the other possible flags (delete|startup|running).
+If you need to divert from this behaviour, set one of the other possible flags (false|startup|running).
 
 ```yaml
     source: /tmp/source
