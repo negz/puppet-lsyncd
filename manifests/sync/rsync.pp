@@ -2,6 +2,7 @@ define lsyncd::sync::rsync (
   $source   = undef,
   $target   = undef,
   $ensure   = present,
+  $excludes = [],
   $options  = {},
 ) {
   $path = "${lsyncd::config_dir}/sync.d/${name}.conf.lua"

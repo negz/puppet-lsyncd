@@ -3,6 +3,9 @@ sync {
   source = "<%= @source %>",
   targetdir = "<%= @targetdir %>",
   host = "<%= @host %>",
+  <% unless @excludes.empty? %>
+    exclude = {<% @excludes.each do |exclude| %> '<%= exclude %>', <% end %>},
+  <% end %>
   rsync = {
     <% @rsync_options.each do |key, val| -%>
       <%= key %> = <%= val %>,
