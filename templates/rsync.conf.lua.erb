@@ -2,6 +2,9 @@ sync {
   default.rsync,
   source = "<%= @source %>",
   target = "<%= @target %>",
+  <% unless @excludes.empty? %>
+    exclude = {<% @excludes.each do |exclude| %> '<%= exclude %>', <% end %>},
+  <% end %>
   rsync = {
     <% @options.each do |key, val| -%>
       <%= key %> = <%= val %>,
