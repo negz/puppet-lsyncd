@@ -2,6 +2,12 @@ sync {
   default.rsync,
   source = "<%= @source %>",
   target = "<%= @target %>",
+  <% unless @delete.nil? -%>
+  delete = <%= @delete %>,
+  <% end -%>
+  <% unless @delay.nil? -%>
+  delay = <%= @delay %>,
+  <% end -%>
   <% unless @excludes.empty? %>
     exclude = {<% @excludes.each do |exclude| %> '<%= exclude %>', <% end %>},
   <% end %>
