@@ -11,8 +11,8 @@ define lsyncd::rsync (
 	  source   => $source,
 	  target   => $target,
 	  ensure   => $ensure,
-      $delete   = undef,
-      $delay    = undef,
+      delete   => $delete,
+      delay    => $delay,
 	  options  => $options,
   }
 }
